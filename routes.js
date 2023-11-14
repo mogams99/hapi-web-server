@@ -34,6 +34,35 @@ const routes = [
             return `Maaf halaman tidak ditemukan!`;
         }
     },
+    {
+        method: 'GET',
+        path: '/hell-o/{name?}',
+        handler: (request, h) => {
+            const { name = "stranger" } = request.params;
+            const { lang } = request.query;
+
+            if (lang === 'id') {
+                return `Hai, ${name}!`;
+            }
+
+            return `Hell-o, ${name}!`;
+        }
+    },
+    {
+        method: 'POST',
+        path: '/login',
+        handler: (request, h) => {
+            const { username, password } = request.payload;
+            return `Welcome ${username}`;
+        }
+    },
+    {
+        method: 'POST',
+        path: '/user',
+        handler: (request, h) => {
+            return h.response('created').code(201);
+        }
+    },
 ];
 
 module.exports = routes;
